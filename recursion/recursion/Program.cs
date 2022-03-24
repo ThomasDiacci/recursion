@@ -19,6 +19,16 @@ namespace Recursion
 
             //vediamo come ottenere lo stesso risultato con i loops
             Console.WriteLine("While: " + FractionalWhile(val));
+
+            //altro esempio
+            int[] arr = new int[] { 1, 2, 3, 4 };
+            Console.WriteLine("Array values: { 1, 2, 3, 4 }");
+
+            int res = SumWithRecursive(arr);
+            Console.WriteLine("Recursion: " + res);
+
+            int result = SumWithLoop(arr);
+            Console.WriteLine("Loop: " + result);
         }
 
         private static int FractionalWhile(int v)
@@ -59,6 +69,32 @@ namespace Recursion
             }
             //recursive case
             Countdown(i - 1);
+        }
+
+        private static int SumWithRecursive(int[] arr)
+        {
+            int result = 0;
+            //base case:
+            //array con 0 o un elemento
+            //recursive:
+            //scalare l'array sempre più vicina al caso base
+            if (arr.Length == 0)
+            {
+                return result;
+            }
+
+            return arr[0] + SumWithRecursive(arr[1..]);
+        }
+
+        private static int SumWithLoop(int[] arr)
+        {
+            int total = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                total += arr[i];
+            }
+
+            return total;
         }
     }
 }
